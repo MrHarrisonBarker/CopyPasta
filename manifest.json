@@ -1,7 +1,7 @@
 {
   "name": "CopyPasta",
   "description": "Copy links and auto send to disord channel",
-  "version": "0.1",
+  "version": "0.2",
   "permissions": ["contextMenus", "storage"],
   "background": {
     "scripts": ["main.js"]
