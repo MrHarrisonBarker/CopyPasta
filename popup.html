@@ -15,12 +15,36 @@
 </head>
 
 <body style="margin: 0.5rem">
-  <div style="margin: 0.5rem 0.5rem; font-size: large">Discord webhook url</div>
-  <div style="display: flex;">
-    <input style="margin: 0 0.5rem; font-size: large" id="webhookInput" type="text" width="100%">
-    <button style="margin: 0 0.5rem; font-size: large" id="submit">Load</button>
+
+  <div>
+    <div style="margin: 0.5rem 0.5rem; font-size: large">Discord webhook url</div>
+    <div style="display: flex;">
+      <input style="margin: 0 0.5rem; font-size: large" id="webhookInput" type="text" width="100%">
+      <button style="margin: 0 0.5rem; font-size: large" id="submit">Load</button>
+      <button style="margin: 0 0.5rem; font-size: large" id="webhookClear">Clear</button>
+    </div>
+    <div id="prev" style="margin: 0.5rem 0.5rem; font-size: small;overflow-wrap: anywhere;"></div>
   </div>
-  <div id="prev" style="margin: 0.5rem 0.5rem; font-size: small;overflow-wrap: anywhere;"></div>
+
+  <!-- <div>
+    <div style="margin: 0.5rem 0.5rem; font-size: large">Discord command webhook url</div>
+    <div style="display: flex;">
+      <input style="margin: 0 0.5rem; font-size: large" id="webhookCommandInput" type="text" width="100%">
+      <button style="margin: 0 0.5rem; font-size: large" id="commandSubmit">Load</button>
+    </div>
+    <div id="commandPrev" style="margin: 0.5rem 0.5rem; font-size: small;overflow-wrap: anywhere;"></div>
+  </div>
+
+  <div>
+    <div style="margin: 0.5rem 0.5rem; font-size: large">Discord command prefix</div>
+    <div style="display: flex;">
+      <input style="margin: 0 0.5rem; font-size: large" id="prefixInput" type="text" width="100%">
+      <button style="margin: 0 0.5rem; font-size: large" id="prefixSubmit">Load</button>
+    </div>
+    <div id="prefixPrev" style="margin: 0.5rem 0.5rem; font-size: small;overflow-wrap: anywhere;"></div>
+  </div> -->
+
+
   <script src="popup.js"></script>
 </body>
 

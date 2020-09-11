@@ -1,6 +1,8 @@
 chrome.runtime.onInstalled.addListener(function () {
     chrome.storage.sync.set({
-        webhookUrl: ''
+        webhookUrl: '',
+        webhookCommandUrl: '',
+        prefix: '!play'
     });
     // chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
     //     chrome.declarativeContent.onPageChanged.addRules([{
@@ -13,6 +15,3 @@ chrome.runtime.onInstalled.addListener(function () {
     //     }]);
     // });
 });
-
-
-
