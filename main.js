@@ -73,16 +73,23 @@ function sendDiscordMessage(message) {
         message = `https://i.redd.it${messageAsUrl.pathname}`;
       }
 
-      var params = {
-        username: "CopyPasta",
-        avatar_url: "",
-        content: message
-      }
+      chrome.storage.sync.get('userId', function (data) {
+        console.log(data);
+        if (data.userId != null) {
+          message = `<@${data.userId}> Sent ` + message;
+          console.log(message);
+        }
 
-      console.log("Sending discord message", params);
-
-      request.send(JSON.stringify(params));
-
+        var params = {
+          username: "CopyPasta",
+          avatar_url: "",
+          content: message
+        }
+  
+        console.log("Sending discord message", params);
+  
+        request.send(JSON.stringify(params));
+      });
     } else {
       alert("No Discord webhook url");
     }

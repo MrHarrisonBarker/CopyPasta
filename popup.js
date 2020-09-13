@@ -1,41 +1,44 @@
 console.log("Loaded popup.js");
 let submit = document.getElementById('submit');
-// let commandSubmit = document.getElementById('commandSubmit');
-// let prefixSubmit = document.getElementById('prefixSubmit');
+let userIdSubmit = document.getElementById('userIdInputSubmit');
+let helpButton = document.getElementById('helpToggle');
 
 let webhookInput = document.getElementById('webhookInput');
 let webhookClear = document.getElementById('webhookClear');
-// let webhookCommandInput = document.getElementById('webhookCommandInput');
-// let prefixInput = document.getElementById('prefixInput');
+let userIdInput = document.getElementById('userIdInput');
+let userIdClear = document.getElementById('userIdClear');
+
+let userIdRegex = /[0-9]{1,64}/;
+let webhookRegex = /discordapp.com\/api\/webhooks\/([^\/]+)\/([^\/]+)/;
 
 chrome.storage.sync.get('webhookUrl', function (data) {
     webhookInput.value = data.webhookUrl;
     document.getElementById('prev').innerText = data.webhookUrl;
 });
 
-// chrome.storage.sync.get('webhookCommandUrl', function (data) {
-//     webhookCommandInput.value = data.webhookCommandUrl;
-//     document.getElementById('commandPrev').innerText = data.webhookCommandUrl;
-// });
+chrome.storage.sync.get('userId', function (data) {
+    userIdInput.value = data.userId;
+    document.getElementById('userIdPreview').innerText = data.userId;
+});
 
-// chrome.storage.sync.get('prefix', function (data) {
-//     prefixInput.value = data.prefix;
-//     document.getElementById('prefixPrev').innerText = data.prefix;
-// });
 
 function setWebhook() {
-    document.getElementById('prev').innerText = webhookInput.value;
 
-    var webhookRegex = /discordapp.com\/api\/webhooks\/([^\/]+)\/([^\/]+)/
-    if (!webhookRegex.test(webhookInput.value)) 
+    let webhookUrl = webhookInput.value;
+
+    console.log("setting webhook", webhookUrl);
+
+    document.getElementById('prev').innerText = webhookUrl;
+
+    if (!webhookRegex.test(webhookUrl)) 
     {
         alert("That is not a discord webhook url");
         document.getElementById('prev').innerText = null;   
     } else {
         chrome.storage.sync.set({
-            webhookUrl: webhookInput.value
+            webhookUrl: webhookUrl
         }, function () {
-            console.log("The url is", webhookInput.value);
+            console.log("The url is", webhookUrl);
         });
     }
     // console.log("set webhook", webhookInput.value);
@@ -48,31 +51,42 @@ function clearWebhook() {
     document.getElementById('prev').innerText = null;   
 }
 
-// function setCommandWebhook() {
-//     document.getElementById('commandPrev').innerText = webhookCommandInput.value;
+function setUserId() {
 
-//     chrome.storage.sync.set({
-//         webhookCommandUrl: webhookCommandInput.value
-//     }, function () {
-//         console.log("The url is", webhookCommandInput.value);
-//     });
+    let userId = userIdInput.value;
 
-//     console.log("set command webhook", webhookCommandInput.value);
-// }
+    console.log("setting userId", userId);
 
-// function setPrefix() {
-//     document.getElementById('prefixPrev').innerText = prefixInput.value;
+    document.getElementById('userIdPreview').innerText = userId;
 
-//     chrome.storage.sync.set({
-//         prefix: prefixInput.value
-//     }, function () {
-//         console.log("The url is", prefixInput.value);
-//     });
+    chrome.storage.sync.set({
+        userId: userId
+    });
+}
 
-//     console.log("set prefix", prefixInput.value);
-// }
+function clearUserId() {
+    chrome.storage.sync.set({
+        userId: null
+    });
+
+    document.getElementById('userIdPreview').innerText = null;
+}
+
+function toggleHelp() {
+    let help = document.getElementById('help');
+    console.log(help.style.display);
+    if (help.style.display === "none" || help.style.display == "") {
+      help.style.display = "block";
+    } else {
+      help.style.display = "none";
+    }
+  }
+
 
 submit.addEventListener('click', setWebhook);
 webhookClear.addEventListener('click', clearWebhook);
-// commandSubmit.addEventListener('click', setCommandWebhook);
-// prefixSubmit.addEventListener('click', setPrefix);
+
+userIdSubmit.addEventListener('click', setUserId);
+userIdClear.addEventListener('click',clearUserId);
+
+helpButton.addEventListener('click', toggleHelp);

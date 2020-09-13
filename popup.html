@@ -9,41 +9,119 @@
       outline: none;
     } */
     html {
-      width: min-content;
+      /* width: min-content; */
+      width: 600px;
+    }
+
+    button {
+      /* margin: 0 0.5rem; */
+    }
+
+    .inputWithButtons {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 0.5rem;
+    }
+
+    .inputWithButtons>input {
+      width: 100%;
+      margin-right: 0.5rem;
+    }
+
+    .inputWithButtons>button:first-of-type {
+      margin-right: 0.5rem;
+    }
+
+    .preview {
+      background-color: #f5f5f5;
+      padding: 0.5rem;
+      box-shadow: inset 0 0 1px 1px #c6c6c69c;
+      border-radius: 0.25rem;
+    }
+
+    .control {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+    }
+
+    .control>label {
+      font-size: large;
+    }
+
+    .helpHeading {
+      font-size: large;
+    }
+
+    .helpText {
+      font-size: medium;
+      margin-bottom: 0.5rem;
+    }
+
+    .helpContent {
+      padding: 0.5rem;
+    }
+
+    /* .control > div {
+      margin-bottom: 1rem;
+    } */
+
+    #help {
+      /* overflow-wrap: anywhere; */
+      display: none;
+      max-height: 350px;
+      overflow: auto;
+      margin-top: 0.5rem;
     }
   </style>
 </head>
 
 <body style="margin: 0.5rem">
 
-  <div>
-    <div style="margin: 0.5rem 0.5rem; font-size: large">Discord webhook url</div>
-    <div style="display: flex;">
-      <input style="margin: 0 0.5rem; font-size: large" id="webhookInput" type="text" width="100%">
-      <button style="margin: 0 0.5rem; font-size: large" id="submit">Load</button>
-      <button style="margin: 0 0.5rem; font-size: large" id="webhookClear">Clear</button>
+  <div class="control">
+    <label for="webhookInput">Discord webhook url*</label>
+    <div class="inputWithButtons">
+      <input id="webhookInput" type="text" width="100%">
+      <button id="submit">Load</button>
+      <button id="webhookClear">Clear</button>
     </div>
-    <div id="prev" style="margin: 0.5rem 0.5rem; font-size: small;overflow-wrap: anywhere;"></div>
+    <div id="prev" class="preview" style="overflow-wrap: anywhere;"></div>
   </div>
 
-  <!-- <div>
-    <div style="margin: 0.5rem 0.5rem; font-size: large">Discord command webhook url</div>
-    <div style="display: flex;">
-      <input style="margin: 0 0.5rem; font-size: large" id="webhookCommandInput" type="text" width="100%">
-      <button style="margin: 0 0.5rem; font-size: large" id="commandSubmit">Load</button>
+  <div class="control">
+    <label for="userIdInput">Discord user ID</label>
+    <div class="inputWithButtons">
+      <input id="userIdInput" type="text" width="100%">
+      <button id="userIdInputSubmit">Load</button>
+      <button id="userIdClear">Clear</button>
     </div>
-    <div id="commandPrev" style="margin: 0.5rem 0.5rem; font-size: small;overflow-wrap: anywhere;"></div>
+    <div id="userIdPreview" class="preview" style="overflow-wrap: anywhere;"></div>
   </div>
 
-  <div>
-    <div style="margin: 0.5rem 0.5rem; font-size: large">Discord command prefix</div>
-    <div style="display: flex;">
-      <input style="margin: 0 0.5rem; font-size: large" id="prefixInput" type="text" width="100%">
-      <button style="margin: 0 0.5rem; font-size: large" id="prefixSubmit">Load</button>
-    </div>
-    <div id="prefixPrev" style="margin: 0.5rem 0.5rem; font-size: small;overflow-wrap: anywhere;"></div>
-  </div> -->
 
+  <button id="helpToggle">help</button>
+
+  <div id="help">
+    <div class="helpContent">
+      <div class="helpHeading">Create webhook url</div>
+      <div class="helpText">Click edit channel and goto intergratons</div>
+      <img src="https://i.imgur.com/TJPSfnv.png" style="width: 500px">
+      <div class="helpText">View webhooks</div>
+      <img src="https://i.imgur.com/xc2LNyL.png" style="width: 500px">
+      <div class="helpText">New webhook</div>
+      <img src="https://i.imgur.com/sF8u1lx.png" style="width: 500px">
+      <div class="helpText">Copy webhook url and paste into CopyPasta webhook url</div>
+      <img src="https://i.imgur.com/WXT0iSu.png">
+    </div>
+
+    <div class="helpContent">
+      <div class="helpHeading">Add user ID</div>
+      <div class="helpText">Copy user ID</div>
+      <img src="https://i.imgur.com/8EvvhVR.png">
+      <div class="helpText">Paste user ID into CopyPasta</div>
+      <img src="https://i.imgur.com/WXT0iSu.png">
+    </div>
+  </div>
 
   <script src="popup.js"></script>
 </body>
